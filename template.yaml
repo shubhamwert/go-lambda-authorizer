@@ -1,0 +1,43 @@
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  goAuthRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      Description: "Role for go authorizer"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: goAuth-lambda-basic-execution
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action: logs:CreateLogGroup
+              Resource: arn:aws:logs:<region>:<accountId>:*
+            - Effect: Allow
+              Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              Resource:
+              - "*"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess"
+  goAuth:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: makefile
+    Properties:
+      Runtime: provided.al2
+      Architectures:
+        - x86_64
+      CodeUri: ./
+      Handler: bootstrap
+      Role: !GetAtt goAuthRole.Arn

@@ -21,3 +21,6 @@ temp-*
 
 # Go workspace file
 go.work
+
+samconfig.toml
+.aws-sam
