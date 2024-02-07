@@ -2,7 +2,7 @@ A simple lambda authorizer written in go with dynamodb as backend.
 
 This repo seprates code based upon branches , ref branches for specific implementation
 
-## Prequites
+## prerequisite 
 1. To setup aws lambda and CI/CD we use sam, please download it from https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
 
 Branch Main:
@@ -15,13 +15,16 @@ Branch SimpleAndFast:
     You can fork the repo and create your custom logic suitable for your needs
     Expects minimal input as env variables
         Create Zip:
+
             ```bash
+
             GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-s -w" -o bootstrap -tags lambda.norpc
             zip myFunction.zip bootstrap    
     
             ```
 
     To Use sam template (remember to change <region> to your region and <accountId> to your accountId in template.yaml )
+
     ```bash
         sam build && sam deploy --guide
     ```
