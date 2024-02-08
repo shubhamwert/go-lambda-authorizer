@@ -41,3 +41,9 @@ Resources:
       CodeUri: ./
       Handler: bootstrap
       Role: !GetAtt goAuthRole.Arn
+
+  # goAuthLogGroup:
+  #   Type: AWS::Logs::LogGroup
+  #   Properties:
+  #     LogGroupName: !Sub /aws/lambda/${goAuth}
+  #     RetentionInDays: 7

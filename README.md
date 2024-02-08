@@ -1,8 +1,18 @@
 A simple lambda authorizer written in go with dynamodb as backend.
 
 This repo seprates code based upon branches , ref branches for specific implementation
+## Architechure
 
-## prerequisite 
+### Branch: SimpleAndFast
+#### Overview how authorizer connects with api gateway
+![alt text](./goAuth-overview.png)
+
+#### Flow diagram
+![alt text](./goAuth-Auth%20401.png)
+
+
+
+## Prerequisite 
 1. To setup aws lambda and CI/CD we use sam, please download it from https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html
 
 Branch Main:
@@ -30,4 +40,3 @@ Branch SimpleAndFast:
     ```
     fill the details and it will create lambda and role for you
     now you can connect it as authorizer in your api gateway
-    
